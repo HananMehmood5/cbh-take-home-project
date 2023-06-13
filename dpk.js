@@ -22,7 +22,6 @@ const stringifyEvent = (event, isPartition) => {
 const deterministicPartitionKey = (event) => {
   const isPartitionKey = event && event.partitionKey;
   let key = stringifyEvent(event, isPartitionKey);
-  console.log(key);
 
   if ((event && !isPartitionKey) || key.length > MAX_PARTITION_KEY_LENGTH) { 
     key = crypto.createHash("sha3-512").update(key).digest("hex");
